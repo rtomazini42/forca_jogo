@@ -1,7 +1,20 @@
 import random
+vidas = 8
 
 def jogar():
   print("***JOGANDO FORCA***")
+  print("Escolha o nivel:\n1-Fácil\n2-médio\n3-dificil")
+  nivel = input("nivel:")
+  nivel = int(nivel)
+  if(nivel == 1):
+    vidas = 10
+  if(nivel == 2):
+    vidas = 8
+  if(nivel == 3):
+    vidas = 5
+  if(nivel > 3):
+    vidas = 3 
+  print("Você tem {} vidas".format(vidas))
   banco = open('palavras.txt', 'r')
   palavras = []
   for linha in banco:
@@ -41,11 +54,11 @@ def jogar():
     if acertou == False:
       erros = erros + 1
       print('Você errou\n')
-      print('faltam:')
-      print(8 - erros)
-      print('tentativas\n\n')
+      print('faltam:' , end=' ')
+      print(vidas - erros, end='')
+      print(' tentativas\n\n')
       imprimir()
-      if erros == 8:
+      if erros == vidas:
         print('\nFim de jogo \n\n\n')
         print('a palavra era:')
         print(palavra_secreta, end='\n\n\n')
